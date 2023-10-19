@@ -1,5 +1,5 @@
-import { Route, RouteChildrenProps, Switch } from 'react-router-dom';
 import React, { useReducer, useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import logging from './config/logging';
 import routes from './config/routes';
@@ -45,7 +45,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                         setLoading(false);
                     }, 1000);
                 } else if (user) {
-                    setAuthStage('User authenticated.')
+                    setAuthStage('User authenticated.');
                     userDispatch({
                         type: 'login',
                         payload: { user, fire_token }
@@ -69,24 +69,23 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
     return (
         <UserContextProvider value={userContextValues}>
-            <Switch>
-                {routes.map((route, index) => {
-                    if (route.auth) {
-                        // If there is an authentication, protect the route
-                        <Route
-                            key={index}
-                            exact={route.exact}
-                            path={route.path}
-                            render={(routeProps: RouteChildrenProps<any>) => (
+            <Routes>
+                {routes.map((route, index) => (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        element={
+                            route.auth ? (
                                 <AuthRoute>
-                                    <route.component {...routeProps} />
+                                    <route.component />
                                 </AuthRoute>
-                            )}
-                        />;
-                    }
-                    return <Route key={index} exact={route.exact} path={route.path} render={(routeProps: RouteChildrenProps<any>) => <route.component {...routeProps} />} />;
-                })}
-            </Switch>
+                            ) : (
+                                <route.component />
+                            )
+                        }
+                    />
+                ))}
+            </Routes>
         </UserContextProvider>
     );
 };

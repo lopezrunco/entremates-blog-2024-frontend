@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
 import firebase from 'firebase';
 import React, { useContext, useState } from 'react';
@@ -18,7 +18,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
     const [error, setError] = useState<string>('');
 
     const userContext = useContext(UserContext);
-    const history = useHistory();
+    const navigate = useNavigate();
     const isLogin = window.location.pathname.includes('login');
 
     const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) => {
@@ -41,12 +41,12 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                                 if (error) {
                                     setError(error);
                                     setAuthenticating(false);
-                                } else if (user) {
+                                } else if (_user) {
                                     userContext.userDispatch({
                                         type: 'login',
                                         payload: { user: _user, fire_token }
                                     });
-                                    history.push('/');
+                                    navigate('/');
                                 }
                             });
                         } catch (error) {
