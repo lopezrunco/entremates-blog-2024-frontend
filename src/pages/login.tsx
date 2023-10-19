@@ -1,10 +1,10 @@
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
 import firebase from 'firebase';
 import React, { useContext, useState } from 'react';
 
 import UserContext from '../contexts/user';
-import { SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
+import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
 import logging from '../config/logging';
 
 import IPageProps from '../interfaces/page';
@@ -18,7 +18,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
     const [error, setError] = useState<string>('');
 
     const userContext = useContext(UserContext);
-    // const history = useHistory();
+    const history = useHistory();
     const isLogin = window.location.pathname.includes('login');
 
     const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) => {
@@ -37,7 +37,18 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                     if (name) {
                         try {
                             let fire_token = await user.getIdToken();
-                            // TO DO: If a token exists, auth with the backend
+                            Authenticate(uid, name, fire_token, (error, _user) => {
+                                if (error) {
+                                    setError(error);
+                                    setAuthenticating(false);
+                                } else if (user) {
+                                    userContext.userDispatch({
+                                        type: 'login',
+                                        payload: { user: _user, fire_token }
+                                    });
+                                    history.push('/');
+                                }
+                            });
                         } catch (error) {
                             setError('Invalid token.');
                             logging.error(error);

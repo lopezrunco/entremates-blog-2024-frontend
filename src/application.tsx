@@ -1,8 +1,10 @@
 import { Route, RouteChildrenProps, Switch } from 'react-router-dom';
 import React, { useReducer, useState, useEffect } from 'react';
 
-import { UserContextProvider, initialUserState, userReducer } from './contexts/user';
+import logging from './config/logging';
 import routes from './config/routes';
+import { UserContextProvider, initialUserState, userReducer } from './contexts/user';
+import { Validate } from './modules/auth';
 import LoadingComponent from './components/Loader';
 import AuthRoute from './components/AuthRoute';
 
@@ -31,20 +33,39 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 setLoading(false);
             }, 1000);
         } else {
-            // TO DO: Validate with the backend
-            setAuthStage('Credentials found, validating...');
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            return Validate(fire_token, (error, user) => {
+                if (error) {
+                    logging.error(error);
+                    setAuthStage('User not valid, logging out...');
+                    userDispatch({
+                        type: 'logout',
+                        payload: initialUserState
+                    });
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
+                } else if (user) {
+                    setAuthStage('User authenticated.')
+                    userDispatch({
+                        type: 'login',
+                        payload: { user, fire_token }
+                    });
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
+                }
+            });
         }
     };
 
     const userContextValues = {
         userState,
         userDispatch
-    }
+    };
 
-    if (loading) {return <LoadingComponent>{authStage}</LoadingComponent>}
+    if (loading) {
+        return <LoadingComponent>{authStage}</LoadingComponent>;
+    }
 
     return (
         <UserContextProvider value={userContextValues}>
@@ -52,24 +73,18 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 {routes.map((route, index) => {
                     if (route.auth) {
                         // If there is an authentication, protect the route
-                        <Route 
-                            key={index} 
-                            exact={route.exact} 
-                            path={route.path} 
-                            render={(routeProps: RouteChildrenProps<any>) => 
+                        <Route
+                            key={index}
+                            exact={route.exact}
+                            path={route.path}
+                            render={(routeProps: RouteChildrenProps<any>) => (
                                 <AuthRoute>
                                     <route.component {...routeProps} />
-                                </AuthRoute>} 
-                        />
+                                </AuthRoute>
+                            )}
+                        />;
                     }
-                    return (
-                        <Route 
-                            key={index} 
-                            exact={route.exact} 
-                            path={route.path} 
-                            render={(routeProps: RouteChildrenProps<any>) => <route.component {...routeProps} />} 
-                        />
-                    )
+                    return <Route key={index} exact={route.exact} path={route.path} render={(routeProps: RouteChildrenProps<any>) => <route.component {...routeProps} />} />;
                 })}
             </Switch>
         </UserContextProvider>
