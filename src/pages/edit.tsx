@@ -216,12 +216,7 @@ const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
                     <FormGroup>
                         <Label>Preview</Label>
                         <div className="border p-2">
-                            <div>
-                                dangerouslySetInnerHTML=
-                                {{
-                                    __html: content
-                                }}
-                            </div>
+                            <div dangerouslySetInnerHTML={{ __html: content }} />
                         </div>
                     </FormGroup>
                 </Form>
