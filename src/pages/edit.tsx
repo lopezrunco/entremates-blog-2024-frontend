@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
@@ -20,7 +19,6 @@ import Navigation from '../components/Navigation';
 import Header from '../components/Header';
 import ErrorText from '../components/ErrorText';
 import SuccessText from '../components/SuccessText';
-import { Link } from 'react-router-dom';
 
 const EditPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
@@ -107,7 +105,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
             });
             if (response.status === 201) {
                 setId(response.data.blog._id);
-                setSuccess('Blog created. You can continue to edit it here.');
+                setSuccess('Blog created. You can continue to edit it in this same page.');
             } else {
                 setError('Error saving the blog.');
             }
@@ -224,4 +222,4 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
     );
 };
 
-export default withRouter(EditPage);
+export default EditPage;
