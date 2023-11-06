@@ -77,7 +77,7 @@ const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
                 setError(`Unable to retrieve the blog ${_id}`);
                 setId('');
             }
-        } catch (error) {
+        } catch (error: any) {
             setError(error.message);
         } finally {
             setLoading(false);
@@ -112,7 +112,7 @@ const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
             } else {
                 setError('Error saving the blog.');
             }
-        } catch (error) {
+        } catch (error: any) {
             setError(error.message);
         } finally {
             setSaving(false);
@@ -146,7 +146,7 @@ const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
             } else {
                 setError('Error updating the blog.');
             }
-        } catch (error) {
+        } catch (error: any) {
             setError(error.message);
         } finally {
             setSaving(false);
