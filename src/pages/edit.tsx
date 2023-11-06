@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
@@ -22,7 +22,7 @@ import ErrorText from '../components/ErrorText';
 import SuccessText from '../components/SuccessText';
 import { Link } from 'react-router-dom';
 
-const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> = (props) => {
+const EditPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [picture, setPicture] = useState<string>('');
@@ -36,17 +36,16 @@ const EditPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
     const [error, setError] = useState<string>('');
 
     const { user } = useContext(UserContext).userState;
+    const { blogID } = useParams();
 
     useEffect(() => {
-        let blogID = props.match.params.blogID;
-
         if (blogID) {
             setId(blogID);
             getBlog(blogID);
         } else {
             setLoading(false);
         }
-    }, []);
+    }, [blogID]);
 
     const getBlog = async (id: string) => {
         try {
