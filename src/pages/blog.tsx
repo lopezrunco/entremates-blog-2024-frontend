@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { RouteComponentProps, useHistory, Redirect, withRouter, Link } from 'react-router-dom';
+import { useHistory, Redirect, useParams, Link } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 
 import config from '../config/config';
@@ -14,7 +14,7 @@ import Navigation from '../components/Navigation';
 import ErrorText from '../components/ErrorText';
 import Header from '../components/Header';
 
-const BlogPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> = (props) => {
+const BlogPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
     const [blog, setBlog] = useState<IBlog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -25,10 +25,9 @@ const BlogPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
 
     const { user } = useContext(UserContext).userState;
     const history = useHistory();
+    const { blogID } = useParams();
 
     useEffect(() => {
-        let blogID = props.match.params.blogID;
-
         if (blogID) {
             setId(blogID);
         } else {
@@ -139,4 +138,4 @@ const BlogPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
     }
 };
 
-export default withRouter(BlogPage);
+export default BlogPage;
