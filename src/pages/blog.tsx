@@ -3,11 +3,11 @@ import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from 'r
 import { RouteComponentProps, useHistory, Redirect, withRouter, Link } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 
+import config from '../config/config';
+import UserContext from '../contexts/user';
 import IPageProps from '../interfaces/page';
 import IBlog from '../interfaces/blog';
 import IUser from '../interfaces/user';
-
-import config from '../config/config';
 
 import LoadingComponent, { Loading } from '../components/Loader';
 import Navigation from '../components/Navigation';
@@ -57,7 +57,12 @@ const BlogPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
         } catch (error: any) {
             setError(error.message);
         } finally {
-            setLoading(false);
+            // Testing
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+
+            // setLoading(false);
         }
     };
 
@@ -70,10 +75,15 @@ const BlogPage: React.FunctionComponent<IPageProps & RouteComponentProps<any>> =
                 url: `${config.server.url}/blogs/${_id}`
             });
 
-            if (response.status === 201) {
-                history.push('/');
+            if (response.status === 200) {
+                // Testing
+                setTimeout(() => {
+                    history.push('/');
+                }, 1000);
+
+                // history.push('/');
             } else {
-                setError(`Unable to fetch the blog ${_id}`);
+                setError(`Unable to delete the blog ${_id}`);
                 setDeleting(false);
             }
         } catch (error: any) {

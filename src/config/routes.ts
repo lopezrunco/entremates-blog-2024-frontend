@@ -50,7 +50,7 @@ const mainRoutes: IRoute[] = [
     {
         path: '/',
         exact: true,
-        auth: true,
+        auth: false,
         component: HomePage,
         name: 'Home'
     }
