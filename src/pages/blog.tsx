@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { useHistory, Redirect, useParams, Link } from 'react-router-dom';
+import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 
 import config from '../config/config';
@@ -24,14 +24,14 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
     const [deleting, setDeleting] = useState<boolean>(false);
 
     const { user } = useContext(UserContext).userState;
-    const history = useHistory();
+    const navigate = useNavigate();
     const { blogID } = useParams();
 
     useEffect(() => {
         if (blogID) {
             setId(blogID);
         } else {
-            history.push('/');
+            navigate('/');
         }
         // eslint-disable-next-line
     }, []);
@@ -56,12 +56,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
         } catch (error: any) {
             setError(error.message);
         } finally {
-            // Testing
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
-
-            // setLoading(false);
+            setLoading(false);
         }
     };
 
@@ -75,12 +70,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
             });
 
             if (response.status === 200) {
-                // Testing
-                setTimeout(() => {
-                    history.push('/');
-                }, 1000);
-
-                // history.push('/');
+                navigate('/');
             } else {
                 setError(`Unable to delete the blog ${_id}`);
                 setDeleting(false);
@@ -134,7 +124,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
             </Container>
         );
     } else {
-        return <Redirect to="/" />;
+        return <Navigate to="/" />;
     }
 };
 
