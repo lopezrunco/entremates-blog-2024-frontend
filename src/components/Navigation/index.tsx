@@ -24,15 +24,9 @@ const Navigation: React.FunctionComponent<INavigationProps> = (props) => {
                 </NavbarBrand>
                 <Nav className="mr-auto" navbar />
                 {user._id === '' ? (
-                    <>
-                        <NavbarText tag={Link} to="/login">
-                            Login
-                        </NavbarText>
-                        <NavbarText className="mr-2 ml-2">|</NavbarText>
-                        <NavbarText tag={Link} to="/register">
-                            Sign Up
-                        </NavbarText>
-                    </>
+                    <NavbarText tag={Link} to="/login">
+                        Login
+                    </NavbarText>
                 ) : (
                     <>
                         <Button outline tag={Link} to="/edit">

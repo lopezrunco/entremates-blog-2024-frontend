@@ -1,10 +1,11 @@
-import React, { useReducer, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import React, { useReducer, useState, useEffect } from 'react';
 
+import { UserContextProvider, initialUserState, userReducer } from './contexts/user';
 import logging from './config/logging';
 import routes from './config/routes';
-import { UserContextProvider, initialUserState, userReducer } from './contexts/user';
 import { Validate } from './modules/auth';
+
 import LoadingComponent from './components/Loader';
 import AuthRoute from './components/AuthRoute';
 

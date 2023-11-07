@@ -12,13 +12,6 @@ const authRoutes: IRoute[] = [
         auth: false,
         component: LoginPage,
         name: 'Login'
-    },
-    {
-        path: '/register',
-        exact: true,
-        auth: false,
-        component: LoginPage,
-        name: 'Register'
     }
 ];
 
