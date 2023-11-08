@@ -9,6 +9,8 @@ import { Validate } from './modules/auth';
 import LoadingComponent from './components/Loader';
 import AuthRoute from './components/AuthRoute';
 
+import GlobalStyles from './assets/styles/GlobalStyles';
+
 export interface IApplicationProps {}
 
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
@@ -70,6 +72,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
     return (
         <UserContextProvider value={userContextValues}>
+            <GlobalStyles />
             <Routes>
                 {routes.map((route, index) => (
                     <Route
