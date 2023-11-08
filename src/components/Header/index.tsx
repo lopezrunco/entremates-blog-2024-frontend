@@ -1,5 +1,5 @@
-import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
+import React from 'react';
 
 export interface IHeaderProps {
     height?: string;

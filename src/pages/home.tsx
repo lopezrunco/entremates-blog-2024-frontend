@@ -10,7 +10,7 @@ import IBlog from '../interfaces/blog';
 import IUser from '../interfaces/user';
 
 import Navigation from '../components/Navigation';
-import Header from '../components/Header';
+import ImageSlider from '../components/ImageSlider';
 import LoadingComponent from '../components/Loader';
 import BlogPreview from '../components/BlogPreview';
 import ErrorText from '../components/ErrorText';
@@ -52,7 +52,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     return (
         <Container fluid className="p-0">
             <Navigation />
-            <Header title="Entre mates y otras yerbas" headline="Fe - Esperanza - Caridad" />
+            <ImageSlider />
             <Container className="mt-5">
                 {blogs.length === 0 && (
                     <p>
