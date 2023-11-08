@@ -2,7 +2,7 @@ import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 
-interface Item {
+interface ISliderItemProps {
     src: string;
     altText: string;
     showLogoDesktop: boolean;
@@ -32,7 +32,7 @@ const StyledCarouselItem = styled(CarouselItem)`
     }
 `;
 
-const items: Item[] = [
+const items: ISliderItemProps[] = [
     {
         src: 'https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/zo02jpkqp1wo2oqezu3m',
         altText: 'Entre mates y otras yerbas Slide 1',

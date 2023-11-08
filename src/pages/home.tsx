@@ -17,6 +17,7 @@ import ErrorText from '../components/ErrorText';
 import ContentWarning from '../components/ContentWarning';
 import NewMagazine from '../components/NewMagazine';
 import SectionTitle from '../components/SectionTitle';
+import Ads from '../components/Ads';
 
 const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -81,6 +82,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
                     </Row>
                 </Container>
             </section>
+            <Ads />
         </Container>
     );
 };

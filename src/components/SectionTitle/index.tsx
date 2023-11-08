@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-interface SectionTitleProps {
+interface ISectionTitleProps {
     title: string;
 }
 
-const SectionTitle: FC<SectionTitleProps> = ({ title }) => {
+const SectionTitle: FC<ISectionTitleProps> = ({ title }) => {
     return (
         <div className="title">
             <h2>{title}</h2>
