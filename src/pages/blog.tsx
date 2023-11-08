@@ -13,6 +13,8 @@ import LoadingComponent, { Loading } from '../components/Loader';
 import Navigation from '../components/Navigation';
 import ErrorText from '../components/ErrorText';
 import Header from '../components/Header';
+import Bottom from '../components/Bottom';
+import Footer from '../components/Footer';
 
 const BlogPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
@@ -121,6 +123,8 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
                     <ErrorText error={error} />
                     <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                 </Container>
+                <Bottom />
+                <Footer />
             </Container>
         );
     } else {

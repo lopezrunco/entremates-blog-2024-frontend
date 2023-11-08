@@ -5,7 +5,7 @@ import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
 import { Editor } from 'react-draft-wysiwyg';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useContext, useEffect, useState } from 'react';
 
 import UserContext from '../contexts/user';
@@ -19,6 +19,8 @@ import Navigation from '../components/Navigation';
 import Header from '../components/Header';
 import ErrorText from '../components/ErrorText';
 import SuccessText from '../components/SuccessText';
+import Bottom from '../components/Bottom';
+import Footer from '../components/Footer';
 
 const EditPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
@@ -218,6 +220,8 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
                     </FormGroup>
                 </Form>
             </Container>
+            <Bottom />
+            <Footer />
         </Container>
     );
 };

@@ -4,7 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 const primaryColor = '#60740a';
 const secondaryColor = '#c7b300';
 const primaryDark = '#394506';
-const blackColor = '#1c1c1c';
+const blackColor = '#252525';
+const footerColor = '#1e1e1e';
 const lightColor = '#ececec';
 const grayColor = '#ccc';
 const dangerColor = '#ce0000';
@@ -131,6 +132,13 @@ a {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+  text-decoration: none;
+  transition: .15s ease-in-out all;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
 }
 
 ins {
@@ -1100,65 +1108,21 @@ header {
   color: ${lightColor};
   text-align: center;
 }
-.bottom .grid {
-  grid-template-columns: 1fr;
-  gap: 70px;
-}
-.bottom .grid a {
-  font-weight: 400;
-}
-.bottom .grid .bottom-1 img {
-  width: 250px;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-.bottom .grid .bottom-1 .social {
-  font-size: 2rem;
-}
-.bottom .grid .bottom-1 .social a {
-  margin: 0 5px;
-  color: #ffffffa1;
-  transition: ease-in-out 0.2s;
-}
-.bottom .grid .bottom-1 .social a:hover {
-  color: #fff;
-}
-.bottom .grid .bottom-2 .latest-posts {
-  flex-direction: row;
-  gap: 10px;
-  text-align: center;
-  justify-content: space-evenly;
-}
-.bottom .grid .bottom-2 .latest-posts .post {
-  display: grid;
-  grid-template-columns: 50px 3fr;
-  grid-template-rows: 50px;
-  gap: 15px;
-  align-items: center;
-}
-.bottom .grid .bottom-2 .latest-posts .post .post-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 2px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-.bottom .grid .bottom-3 .contact-info-items {
+.bottom .contact-info-items {
   display: flex;
   flex-direction: column;
   gap: 30px;
   text-align: center;
+  margin-bottom: 3rem;
 }
-.bottom .grid .bottom-3 .contact-info-items a {
+.bottom .contact-info-items a {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
-.bottom .grid .bottom-3 .contact-info-items a .icon {
-  font-size: 2.5rem;
+.bottom .contact-info-items a .icon {
+  font-size: 1.5rem;
   color: ${secondaryColor};
 }
 
@@ -1166,60 +1130,26 @@ header {
   .bottom {
     text-align: left;
   }
-  .bottom .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 45px;
-  }
-  .bottom .grid hr {
-    margin: 0;
-  }
-  .bottom .grid .bottom-1 img {
-    width: 280px;
-    margin: 0;
-    height: auto;
-  }
-  .bottom .grid .bottom-2 .latest-posts {
-    flex-direction: column;
-    justify-content: left;
-    text-align: left;
-  }
-  .bottom .grid .bottom-3 {
-    grid-column: 1/3;
-    text-align: center;
-  }
-  .bottom .grid .bottom-3 hr {
-    margin: 0 auto;
-  }
-  .bottom .grid .bottom-3 .contact-info-items {
+  .bottom .contact-info-items {
     flex-direction: row;
     justify-content: center;
   }
 }
 @media screen and (min-width: 1024px) {
-  .bottom .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  .bottom .grid .bottom-3 {
-    grid-column: auto;
-    text-align: left;
-  }
-  .bottom .grid .bottom-3 hr {
-    margin: 0;
-  }
-  .bottom .grid .bottom-3 .contact-info-items {
+  .bottom .contact-info-items {
     flex-direction: column;
     gap: 5px;
     text-align: left;
+    margin-bottom: 0;
   }
-  .bottom .grid .bottom-3 .contact-info-items a {
+  .bottom .contact-info-items a {
     flex-direction: row;
     gap: 10px;
   }
 }
 footer {
   padding: 20px 0;
-  background-color: #191919;
+  background-color: ${footerColor};
   color: ${lightColor};
   text-align: left;
 }
@@ -1234,7 +1164,7 @@ footer .flex a {
   footer .flex {
     flex-direction: row;
     justify-content: left;
-    gap: 35px;
+    gap: 1rem;
   }
 }
 #goToTop {

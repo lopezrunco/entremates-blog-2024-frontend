@@ -18,6 +18,8 @@ import ContentWarning from '../components/ContentWarning';
 import NewMagazine from '../components/NewMagazine';
 import SectionTitle from '../components/SectionTitle';
 import Ads from '../components/Ads';
+import Bottom from '../components/Bottom';
+import Footer from '../components/Footer';
 
 const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -71,9 +73,9 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
                             <Link to="/edit">Crear</Link> un nuevo árticulo
                         </p>
                     )}
-                    {blogs.map((blog, index) => {
+                    {blogs.map((blog, i) => {
                         return (
-                            <Col key={index} lg='4'>
+                            <Col key={i} lg='4'>
                                 <BlogPreview _id={blog._id} author={(blog.author as IUser).name} headline={blog.headline} title={blog.title} createdAt={blog.createdAt} updatedAt={blog.updatedAt} />
                             </Col>
                         );
@@ -83,6 +85,8 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
                 </Container>
             </section>
             <Ads />
+            <Bottom />
+            <Footer />
         </Container>
     );
 };
