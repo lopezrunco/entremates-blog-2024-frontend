@@ -56,10 +56,10 @@ const Navigation: React.FunctionComponent<INavigationProps> = (props) => {
                         </NavbarText>
                     ) : (
                         <>
-                            <Button outline tag={Link} to="/edit">
+                            <Button outline size="sm" tag={Link} to="/edit">
                                 Crear artículo
                             </Button>
-                            <NavbarText className="mr-2 ml-2">\</NavbarText>
+                            <NavbarText className="mr-2 ml-2"> </NavbarText>
                             <Button outline size="sm" onClick={() => Logout()}>
                                 Cerrar sesión
                             </Button>

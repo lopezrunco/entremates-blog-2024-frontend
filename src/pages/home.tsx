@@ -14,6 +14,7 @@ import ImageSlider from '../components/ImageSlider';
 import LoadingComponent from '../components/Loader';
 import BlogPreview from '../components/BlogPreview';
 import ErrorText from '../components/ErrorText';
+import ContentWarning from '../components/ContentWarning';
 
 const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -53,6 +54,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
         <Container fluid className="p-0">
             <Navigation />
             <ImageSlider />
+            <ContentWarning />
             <Container className="mt-5">
                 {blogs.length === 0 && (
                     <p>
