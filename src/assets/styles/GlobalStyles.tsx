@@ -254,6 +254,7 @@ section {
 
 .title {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 h2,

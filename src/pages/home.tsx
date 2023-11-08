@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -15,6 +15,8 @@ import LoadingComponent from '../components/Loader';
 import BlogPreview from '../components/BlogPreview';
 import ErrorText from '../components/ErrorText';
 import ContentWarning from '../components/ContentWarning';
+import NewMagazine from '../components/NewMagazine';
+import SectionTitle from '../components/SectionTitle';
 
 const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -47,7 +49,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
     };
 
     if (loading) {
-        return <LoadingComponent>Loading blog list...</LoadingComponent>;
+        return <LoadingComponent>Cargando artículos...</LoadingComponent>;
     }
 
     return (
@@ -55,24 +57,30 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
             <Navigation />
             <ImageSlider />
             <ContentWarning />
-            <Container className="mt-5">
-                {blogs.length === 0 && (
-                    <p>
-                        No blogs yet
-                        <br />
-                        <Link to="/edit">Create</Link> a new one
-                    </p>
-                )}
-                {blogs.map((blog, index) => {
-                    return (
-                        <div key={index}>
-                            <BlogPreview _id={blog._id} author={(blog.author as IUser).name} headline={blog.headline} title={blog.title} createdAt={blog.createdAt} updatedAt={blog.updatedAt} />
-                            <hr />
-                        </div>
-                    );
-                })}
-                <ErrorText error={error} />
-            </Container>
+            <NewMagazine />
+            <section className="light-img-bg">
+                <Container className="mt-5">
+                    <SectionTitle title="Novedades" />
+                    <Row>
+
+                    {blogs.length === 0 && (
+                        <p>
+                            A+un no hay artículos en el blog.
+                            <br />
+                            <Link to="/edit">Crear</Link> un nuevo árticulo
+                        </p>
+                    )}
+                    {blogs.map((blog, index) => {
+                        return (
+                            <Col key={index} lg='4'>
+                                <BlogPreview _id={blog._id} author={(blog.author as IUser).name} headline={blog.headline} title={blog.title} createdAt={blog.createdAt} updatedAt={blog.updatedAt} />
+                            </Col>
+                        );
+                    })}
+                    <ErrorText error={error} />
+                    </Row>
+                </Container>
+            </section>
         </Container>
     );
 };
