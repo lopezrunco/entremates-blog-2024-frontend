@@ -1,6 +1,7 @@
 import IRoute from '../interfaces/route';
 
 import HomePage from '../pages/home';
+import MagazinePage from '../pages/magazine';
 import LoginPage from '../pages/login';
 import BlogPage from '../pages/blog';
 import EditPage from '../pages/edit';
@@ -46,6 +47,13 @@ const mainRoutes: IRoute[] = [
         auth: false,
         component: HomePage,
         name: 'Home'
+    },
+    {
+        path: '/revista',
+        exact: true,
+        auth: false,
+        component: MagazinePage,
+        name: 'Magazine'
     }
 ];
 

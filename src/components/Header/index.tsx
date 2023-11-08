@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Col, Container, Row } from 'reactstrap';
 import React from 'react';
 
@@ -6,42 +7,57 @@ export interface IHeaderProps {
     image?: string;
     title: string;
     headline: string;
-    children?: any
+    children?: React.ReactNode;
 }
+
+const HeaderContainer = styled.header<{ image?: string; height?: string }>`
+    background: linear-gradient(rgba(36, 20, 38, 0.5), rgba(36, 39, 38, 0.5)), url(${(props) => props.image}) no-repeat center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: ${(props) => props.height};
+`;
+
+const HeaderContent = styled.div`
+    text-align: center;
+`;
+
+const Title = styled.h2`
+    color: #fff;
+    font-size: 2.5rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+`;
+
+const Headline = styled.p`
+    color: #fff;
+    margin-bottom: 5rem;
+`;
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {
     const { children, height, image, headline, title } = props;
 
-    let headerStyle = {
-        background: 'linear-gradient(rgba(36, 20, 38, 0.5), rgba(36, 39, 38, 0.5)), url(' + image + ') no-repeat center center',
-        WebkitBackgroundSize: 'cover',
-        MozBackgroundSize: 'cover',
-        OBackgroundSize: 'cover',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        width: '100%',
-        height: height
-    };
-
     return (
-        <header style={headerStyle}>
+        <HeaderContainer image={image} height={height}>
             <Container>
-                <Row className="align-items-center text-center">
+                <Row>
                     <Col>
-                        <h1 className="display-4 text-white mt-5 mb-2">{title}</h1>
-                        <h3 className="mb-5 text-white">{headline}</h3>
-                        {children}
+                        <HeaderContent>
+                            <Title>{title}</Title>
+                            <Headline>{headline}</Headline>
+                            {children}
+                        </HeaderContent>
                     </Col>
                 </Row>
             </Container>
-        </header>
+        </HeaderContainer>
     );
 };
 
 Header.defaultProps = {
     height: '100%',
     image: 'https://entrematesyotrasyerbas.com.uy/img/mate-bg-desktop.jpg'
-}
+};
 
 export default Header;
