@@ -56,11 +56,11 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                         }
                     } else {
                         // If no name is returned, we need a custom form getting user's name depending of the provider.
-                        setError('The identity provider does not have a name.');
+                        setError('El proveedor de identidad no tiene un nombre.');
                         setAuthenticating(false);
                     }
                 } else {
-                    setError('The identity provider is missing a lot of necessary information. Try another account or provider.');
+                    setError('El proveedor de identidad no entregó toda la información necesaria. Intente con otro proveedor.');
                     setAuthenticating(false);
                 }
             })
@@ -73,7 +73,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
     return (
         <CenterPiece>
             <Card>
-                <CardHeader>{isLogin ? 'Login' : 'Sign Up'}</CardHeader>
+                <CardHeader>{isLogin ? 'Iniciar sesión' : 'Registro'}</CardHeader>
                 <CardBody>
                     <ErrorText error={error} />
                     <Button block disabled={authenticating} onClick={() => SignInWithSocialMedia(Providers.google)} style={{ backgroundColor: '#ea4335', borderColor: '#ea4335' }}>

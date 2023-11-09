@@ -15,6 +15,7 @@ import ErrorText from '../components/ErrorText';
 import Header from '../components/Header';
 import Bottom from '../components/Bottom';
 import Footer from '../components/Footer';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const BlogPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
@@ -53,7 +54,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
             if (response.status === 200 || response.status === 304) {
                 setBlog(response.data.blog);
             } else {
-                setError(`Unable to fetch the blog ${_id}`);
+                setError(`No se pudo cargar el artículo con ID: ${_id}`);
             }
         } catch (error: any) {
             setError(error.message);
@@ -74,7 +75,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
             if (response.status === 200) {
                 navigate('/');
             } else {
-                setError(`Unable to delete the blog ${_id}`);
+                setError(`No se puedo borrar el artículo con ID ${_id}`);
                 setDeleting(false);
             }
         } catch (error: any) {
@@ -83,46 +84,47 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
         }
     };
 
-    if (loading) return <LoadingComponent>Loading blog...</LoadingComponent>;
+    if (loading) return <LoadingComponent>Cargando artículo...</LoadingComponent>;
 
     if (blog) {
         return (
             <Container fluid className="p-0">
                 <Navigation />
                 <Modal isOpen={modal}>
-                    <ModalHeader>Delete</ModalHeader>
                     <ModalBody>
-                        {deleting ? <Loading /> : 'Delete this blog?'}
+                        {deleting ? <Loading /> : '¿Borrar este artículo?'}
                         <ErrorText error={error} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="danger" onClick={() => deleteBlog()}>
-                            Delete permanently
+                        <Button color="danger" className="mr-2" onClick={() => deleteBlog()}>
+                            Borrar
                         </Button>
                         <Button color="secondary" onClick={() => setModal(false)}>
-                            Cancel
+                            Cancelar
                         </Button>
                     </ModalFooter>
                 </Modal>
                 <Header image={blog.picture || undefined} headline={blog.headline} title={blog.title}>
-                    <p className="text-white">
-                        Posted by {(blog.author as IUser).name} on {new Date(blog.createdAt).toLocaleString()}
-                    </p>
+                    <span className="tag">
+                        Publicado por {(blog.author as IUser).name} el {new Date(blog.createdAt).toLocaleString()}
+                    </span>
                 </Header>
-                <Container className="mt-5">
-                    {user._id === (blog.author as IUser)._id && (
-                        <Container fluid className="p-0">
-                            <Button color="info" className="mr-2" tag={Link} to={`/edit/${blog._id}`}>
-                                Edit
-                            </Button>
-                            <Button color="danger" onClick={() => setModal(true)}>
-                                Delete
-                            </Button>
-                        </Container>
-                    )}
-                    <ErrorText error={error} />
-                    <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-                </Container>
+                <section className="news light-img-bg">
+                    <Container>
+                        {user._id === (blog.author as IUser)._id && (
+                            <Container fluid className="pb-5 d-flex justify-content-end">
+                                <Button color="info" className="mr-2" tag={Link} to={`/edit/${blog._id}`}>
+                                    <FaEdit className="mr-2" /> Editar
+                                </Button>
+                                <Button color="danger" onClick={() => setModal(true)}>
+                                    <FaTrash className="mr-2" /> Borrar
+                                </Button>
+                            </Container>
+                        )}
+                        <ErrorText error={error} />
+                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                    </Container>
+                </section>
                 <Bottom />
                 <Footer />
             </Container>

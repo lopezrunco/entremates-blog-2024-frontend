@@ -32,7 +32,9 @@ const Title = styled.h2`
 
 const Headline = styled.p`
     color: #fff;
-    margin-bottom: 5rem;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+    max-width: 800px;
 `;
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {

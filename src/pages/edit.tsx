@@ -56,7 +56,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
 
             if (response.status === 200 || response.status === 304) {
                 if (user._id !== response.data.blog.author._id) {
-                    logging.warn('The owner of this blog is another user.');
+                    logging.warn('El propietario de este artículo es otro usuario.');
                     setId('');
                 } else {
                     let blog = response.data.blog as IBlog;
@@ -73,7 +73,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
                     setEditorState(_editorState);
                 }
             } else {
-                setError(`Unable to retrieve the blog ${_id}`);
+                setError(`No se pudo cargar el artículo con ID ${_id}`);
                 setId('');
             }
         } catch (error: any) {
@@ -85,7 +85,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
 
     const createBlog = async () => {
         if (title === '' || headline === '' || content === '') {
-            setError('Please fill out all the required forms.');
+            setError('Por favor, llene todos los campos requeridos.');
             setSuccess('');
             return null;
         }
@@ -107,9 +107,9 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
             });
             if (response.status === 201) {
                 setId(response.data.blog._id);
-                setSuccess('Blog created. You can continue to edit it in this same page.');
+                setSuccess('Artículo creado. Puede continuar editándolo en esta misma página.');
             } else {
-                setError('Error saving the blog.');
+                setError('Error al guardar el artículo.');
             }
         } catch (error: any) {
             setError(error.message);
@@ -120,7 +120,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
 
     const editBlog = async () => {
         if (title === '' || headline === '' || content === '') {
-            setError('Please fill out all the required forms.');
+            setError('Por favor, llene todos los campos requeridos.');
             setSuccess('');
             return null;
         }
@@ -141,9 +141,9 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
                 }
             });
             if (response.status === 201) {
-                setSuccess('Blog updated successfully.');
+                setSuccess('Artículo actualizado correctamente.');
             } else {
-                setError('Error updating the blog.');
+                setError('Error al actualizar el artículo.');
             }
         } catch (error: any) {
             setError(error.message);
@@ -157,69 +157,79 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
     return (
         <Container fluid className="p-0">
             <Navigation />
-            <Header headline="" title={_id !== '' ? 'Edit your blog' : 'Create a new blog'} />
-            <Container className="mt-5 mb-5">
-                <ErrorText error={error} />
-                <Form>
-                    <FormGroup>
-                        <Label for="title">Title *</Label>
-                        <Input type="text" name="title" value={title} id="title" placeholder="Your title here..." disabled={saving} onChange={(event) => setTitle(event.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="picture">Picture URL</Label>
-                        <Input type="text" name="picture" value={picture} id="picture" placeholder="Your picture URL here..." disabled={saving} onChange={(event) => setPicture(event.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="headline">Headline *</Label>
-                        <Input type="text" name="headline" value={headline} id="headline" placeholder="Your headline here..." disabled={saving} onChange={(event) => setHeadline(event.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Content</Label>
-                        <Editor
-                            editorState={editorState}
-                            wrapperClassName="card"
-                            editorClassName="card-body"
-                            onEditorStateChange={(newState) => {
-                                setEditorState(newState);
-                                setContent(draftToHtml(convertToRaw(newState.getCurrentContent())));
-                            }}
-                            toolbar={{
-                                options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'history', 'embedded', 'emoji', 'image'],
-                                inline: { inDropdown: true },
-                                list: { inDropdown: true },
-                                textAlign: { inDropdown: true },
-                                link: { inDropdown: true },
-                                history: { inDropdown: true }
-                            }}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <SuccessText success={success} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Button
-                            block
-                            onClick={() => {
-                                _id !== '' ? editBlog() : createBlog();
-                            }}
-                            disabled={saving}
-                        >
-                            {_id !== '' ? 'Update' : 'Post'}
-                        </Button>
-                        {_id !== '' && (
-                            <Button block color="success" tag={Link} to={`/blogs/${_id}`}>
-                                View your post.
+            <Header headline="" title={_id !== '' ? 'Editar artículo' : 'Crear artículo'} />
+            <section className='light-img-bg'>
+                <Container>
+                    <ErrorText error={error} />
+                    <Form>
+                        <FormGroup>
+                            <Label for="title">Título *</Label>
+                            <Input type="text" name="title" value={title} id="title" placeholder="Título del artículo..." disabled={saving} onChange={(event) => setTitle(event.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="picture">URL de la imagen</Label>
+                            <Input type="text" name="picture" value={picture} id="picture" placeholder="URL de la imagen..." disabled={saving} onChange={(event) => setPicture(event.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="headline">Subtítulo *</Label>
+                            <Input
+                                type="text"
+                                name="headline"
+                                value={headline}
+                                id="headline"
+                                placeholder="Subtítulo del artículo..."
+                                disabled={saving}
+                                onChange={(event) => setHeadline(event.target.value)}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Contenido</Label>
+                            <Editor
+                                editorState={editorState}
+                                wrapperClassName="card"
+                                editorClassName="card-body"
+                                onEditorStateChange={(newState) => {
+                                    setEditorState(newState);
+                                    setContent(draftToHtml(convertToRaw(newState.getCurrentContent())));
+                                }}
+                                toolbar={{
+                                    options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'history', 'embedded', 'emoji', 'image'],
+                                    inline: { inDropdown: true },
+                                    list: { inDropdown: true },
+                                    textAlign: { inDropdown: true },
+                                    link: { inDropdown: true },
+                                    history: { inDropdown: true }
+                                }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <SuccessText success={success} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Button
+                                block
+                                onClick={() => {
+                                    _id !== '' ? editBlog() : createBlog();
+                                }}
+                                disabled={saving}
+                            >
+                                {_id !== '' ? 'Actualizar' : 'Crear'}
                             </Button>
-                        )}
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Preview</Label>
-                        <div className="border p-2">
-                            <div dangerouslySetInnerHTML={{ __html: content }} />
-                        </div>
-                    </FormGroup>
-                </Form>
-            </Container>
+                            {_id !== '' && (
+                                <Button block color="success" tag={Link} to={`/blogs/${_id}`}>
+                                    Ver artículo
+                                </Button>
+                            )}
+                        </FormGroup>
+                        <FormGroup>
+                            <Label className="mt-5">Previsualización:</Label>
+                            <div className="border p-2">
+                                <div dangerouslySetInnerHTML={{ __html: content }} />
+                            </div>
+                        </FormGroup>
+                    </Form>
+                </Container>
+            </section>
             <Bottom />
             <Footer />
         </Container>

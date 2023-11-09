@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 const primaryColor = '#60740a';
 const secondaryColor = '#dbc500';
 const primaryDark = '#394506';
+const primaryDarkFaded = '#354104a1';
 const blackColor = '#252525';
 const footerColor = '#1e1e1e';
 const lightColor = '#ececec';
@@ -478,6 +479,16 @@ hr {
   margin-right: 1.5rem;
 }
 
+span.tag {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+  font-size: .8rem;
+  background-color: ${primaryDarkFaded};
+  color: ${lightColor};
+}
+
 // Header ---------------------------------------------------------------------
 header {
   width: 100%;
@@ -798,7 +809,7 @@ header {
 
 // News ---------------------------------------------------------------------
 .news {
-  text-align: center;
+  text-align: left;
 }
 .news .grid {
   text-align: left;
