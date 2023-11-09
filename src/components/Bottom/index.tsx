@@ -8,7 +8,7 @@ interface IContactItemProps {
     colsize: string;
 }
 
-const contactData: IContactItemProps[] = [
+export const contactData: IContactItemProps[] = [
     {
         title: 'entrematesyotrasyerbas@gmail.com',
         link: 'mailto:entrematesyotrasyerbas@gmail.com',

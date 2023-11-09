@@ -6,6 +6,7 @@ import LoginPage from '../pages/login';
 import BlogPage from '../pages/blog';
 import EditPage from '../pages/edit';
 import BlogListPage from '../pages/blogList';
+import ContactPage from '../pages/contact';
 
 const authRoutes: IRoute[] = [
     {
@@ -62,6 +63,13 @@ const mainRoutes: IRoute[] = [
         auth: false,
         component: BlogListPage,
         name: 'BlogList'
+    },
+    {
+        path: '/contacto',
+        exact: true,
+        auth: false,
+        component: ContactPage,
+        name: 'Contact'
     }
 ];
 

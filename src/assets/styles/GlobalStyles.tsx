@@ -1212,8 +1212,9 @@ footer .flex a {
   font-size: 3rem;
   color: #87a30e;
   width: 100%;
+  margin-bottom: 2rem;
 }
-.contact .flex .contact-info .grid .box a {
+.contact .flex .contact-info .grid .box p {
   color: ${primaryColor};
   text-align: center;
   display: flex;
@@ -1246,6 +1247,10 @@ footer .flex a {
   }
 }
 @media screen and (min-width: 1024px) {
+  .contact .flex .contact-info .grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
   .contact > .content-wrap > .flex {
     flex-direction: row;
     gap: 30px;
@@ -1254,6 +1259,14 @@ footer .flex a {
   .contact > .content-wrap > .flex .contact-info .grid {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, auto);
+  }
+  .contact .flex .join-program > .flex {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .contact .flex .join-program > .flex > div {
+    flex-basis: 50%;
+    flex-grow: 1;
   }
   .contact > .content-wrap > .flex .join-program > .flex .join-img {
     height: 440px;
