@@ -1,10 +1,11 @@
-import { Card, CardBody } from 'reactstrap';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import React from 'react';
 
 export interface IBlogPreviewProps {
     _id: string;
     title: string;
+    picture?: string;
     headline: string;
     author: string;
     createdAt: string;
@@ -13,29 +14,25 @@ export interface IBlogPreviewProps {
 }
 
 const BlogPreview: React.FunctionComponent<IBlogPreviewProps> = (props) => {
-    const { _id, children, title, headline, author, createdAt, updatedAt } = props;
+    const { _id, children, title, picture, author, createdAt, updatedAt } = props;
+
+    const BGImageStyledItem = styled.div`
+        background-image: url(${picture});
+    `;
 
     return (
-        <Card className="border-0">
-            <CardBody className="p-0">
-                <Link to={`/blogs/${_id}`} style={{ textDecoration: 'none' }} className="text-primary">
-                    <h1>
-                        <strong>{title}</strong>
-                    </h1>
-                    <h3>{headline}</h3>
-                </Link>
-                {createdAt !== updatedAt ? (
-                    <p>
-                        Updated by {author} at {new Date(updatedAt).toLocaleString()}
-                    </p>
-                ) : (
-                    <p>
-                        Posted by {author} at {new Date(createdAt).toLocaleString()}
-                    </p>
-                )}
-                {children}
-            </CardBody>
-        </Card>
+        <BGImageStyledItem className="item">
+            <Link to={`/blogs/${_id}`} style={{ textDecoration: 'none' }}>
+                <div className="overlay-top">
+                    <span className="category">Novedades</span>
+                    <h4>{title}</h4>
+                    <span className="date">
+                        {createdAt !== updatedAt ? `Modificado por ${author}` : `Creado por ${author}`}
+                        {children}
+                    </span>
+                </div>
+            </Link>
+        </BGImageStyledItem>
     );
 };
 

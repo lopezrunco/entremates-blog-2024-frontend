@@ -776,6 +776,10 @@ header {
 .news .grid {
   text-align: left;
 }
+.news .grid a:hover,
+.news .grid a:active {
+  color: ${lightColor};
+}
 .news .grid-1 {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 200px);
@@ -819,9 +823,6 @@ header {
     grid-template-rows: repeat(2, 300px);
     grid-template-columns: repeat(4, 1fr);
   }
-  .news .grid-1 .item:hover .overlay-top {
-    padding: 15px 15px;
-  }
   .news .grid-1 .item:nth-child(1) {
     grid-column: 1/3;
     grid-row: 1/3;
@@ -829,19 +830,18 @@ header {
 }
 .news .grid-2 {
   grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(15, 250px);
   gap: 15px;
 }
 .news .grid-2 .item {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 250px;
 }
 
 @media screen and (min-width: 768px) {
   .news .grid-2 {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 250px);
     gap: 15px;
   }
   .news .grid-2 .item:nth-child(1) {
@@ -849,14 +849,13 @@ header {
   }
 }
 @media screen and (min-width: 1024px) {
-  .news .grid-2 {
-    grid-template-rows: repeat(8, 300px);
+  .news .grid-2 item {
+    min-height: 300px;
   }
 }
 @media screen and (min-width: 1200px) {
   .news .grid-2 {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 300px);
   }
   .news .grid-2 .item:nth-child(1) {
     grid-column: 1/2;

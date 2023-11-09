@@ -5,6 +5,7 @@ import MagazinePage from '../pages/magazine';
 import LoginPage from '../pages/login';
 import BlogPage from '../pages/blog';
 import EditPage from '../pages/edit';
+import BlogListPage from '../pages/blogList';
 
 const authRoutes: IRoute[] = [
     {
@@ -54,6 +55,13 @@ const mainRoutes: IRoute[] = [
         auth: false,
         component: MagazinePage,
         name: 'Magazine'
+    },
+    {
+        path: '/novedades',
+        exact: true,
+        auth: false,
+        component: BlogListPage,
+        name: 'BlogList'
     }
 ];
 
