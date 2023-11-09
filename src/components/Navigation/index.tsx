@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
-import { Navbar, Container, Nav, NavbarText, Button, NavItem, NavLink, NavbarToggler, Collapse } from 'reactstrap';
+import { Navbar, Container, Nav, NavbarText, Button, NavItem, NavLink, NavbarToggler, Collapse, } from 'reactstrap';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 
 import UserContext, { initialUserState } from '../../contexts/user';
 
@@ -52,7 +53,7 @@ const Navigation: React.FunctionComponent<INavigationProps> = (props) => {
 
                     {user._id === '' ? (
                         <NavbarText tag={Link} to="/login">
-                            Administración
+                            <FaUser />
                         </NavbarText>
                     ) : (
                         <>

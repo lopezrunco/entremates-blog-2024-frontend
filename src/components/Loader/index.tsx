@@ -1,4 +1,3 @@
-import { Card, CardBody } from 'reactstrap';
 import React from 'react';
 
 import CenterPiece from '../CenterPiece';
@@ -37,11 +36,7 @@ export const LoadingComponent: React.FunctionComponent<ILoadingComponentProps> =
     if (card) {
         return (
             <CenterPiece>
-                <Card>
-                    <CardBody>
-                        <Loading dotType={dotType}>{children}</Loading>
-                    </CardBody>
-                </Card>
+                <Loading dotType={dotType}>{children}</Loading>
             </CenterPiece>
         );
     }

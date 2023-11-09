@@ -1,12 +1,16 @@
 @charset "UTF-8";
 
+:root {
+  --primaryColor: #60740a;
+}
+
 .dot-elastic {
   position: relative;
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #9880ff;
-  color: #9880ff;
+  background-color: var(--primaryColor);
+  color: var(--primaryColor);
   animation: dot-elastic 1s infinite linear;
 }
 
@@ -23,8 +27,8 @@
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #9880ff;
-  color: #9880ff;
+  background-color: var(--primaryColor);
+  color: var(--primaryColor);
   animation: dot-elastic-before 1s infinite linear;
 }
 
@@ -33,8 +37,8 @@
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #9880ff;
-  color: #9880ff;
+  background-color: var(--primaryColor);
+  color: var(--primaryColor);
   animation: dot-elastic-after 1s infinite linear;
 }
 
@@ -116,62 +120,62 @@
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #9880ff;
-  color: #9880ff;
-  box-shadow: 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff;
+  background-color: var(--primaryColor);
+  color: var(--primaryColor);
+  box-shadow: 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor);
   animation: dot-bricks 2s infinite ease;
 }
 
 @keyframes dot-bricks {
   0% {
-    box-shadow: 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff;
+    box-shadow: 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor);
   }
 
   8.333% {
-    box-shadow: 10007px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff;
+    box-shadow: 10007px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor);
   }
 
   16.667% {
-    box-shadow: 10007px -16px 0 0 #9880ff, 9991px -16px 0 0 #9880ff, 10007px 0 0 0 #9880ff;
+    box-shadow: 10007px -16px 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor);
   }
 
   25% {
-    box-shadow: 10007px -16px 0 0 #9880ff, 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff;
+    box-shadow: 10007px -16px 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor);
   }
 
   33.333% {
-    box-shadow: 10007px 0 0 0 #9880ff, 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff;
+    box-shadow: 10007px 0 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor);
   }
 
   41.667% {
-    box-shadow: 10007px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff;
+    box-shadow: 10007px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor);
   }
 
   50% {
-    box-shadow: 10007px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff, 9991px -16px 0 0 #9880ff;
+    box-shadow: 10007px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor);
   }
 
   58.333% {
-    box-shadow: 9991px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff, 9991px -16px 0 0 #9880ff;
+    box-shadow: 9991px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor);
   }
 
   66.666% {
-    box-shadow: 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff, 9991px -16px 0 0 #9880ff;
+    box-shadow: 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor), 9991px -16px 0 0 var(--primaryColor);
   }
 
   75% {
-    box-shadow: 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff;
+    box-shadow: 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor);
   }
 
   83.333% {
-    box-shadow: 9991px -16px 0 0 #9880ff, 10007px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff;
+    box-shadow: 9991px -16px 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor);
   }
 
   91.667% {
-    box-shadow: 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff, 10007px -16px 0 0 #9880ff;
+    box-shadow: 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor), 10007px -16px 0 0 var(--primaryColor);
   }
 
   100% {
-    box-shadow: 9991px -16px 0 0 #9880ff, 9991px 0 0 0 #9880ff, 10007px 0 0 0 #9880ff;
+    box-shadow: 9991px -16px 0 0 var(--primaryColor), 9991px 0 0 0 var(--primaryColor), 10007px 0 0 0 var(--primaryColor);
   }
 }

@@ -16,7 +16,7 @@ export interface IApplicationProps {}
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
     const [userState, userDispatch] = useReducer(userReducer, initialUserState);
     const [loading, setLoading] = useState<boolean>(true);
-    const [authStage, setAuthStage] = useState<string>('Checking local storage...');
+    const [authStage, setAuthStage] = useState<string>('Chequeando credenciales...');
 
     useEffect(() => {
         setTimeout(() => {
@@ -26,12 +26,12 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
     // Check local storage for a token. If exists, verify with the backend. If not, we're logged out initially.
     const CheckLocalStorageForCredentials = () => {
-        setAuthStage('Checking credentials...');
+        setAuthStage('Chequeando credenciales...');
         const fire_token = localStorage.getItem('fire_token');
 
         if (fire_token === null) {
             userDispatch({ type: 'logout', payload: initialUserState });
-            setAuthStage('No credentials found.');
+            setAuthStage('No se encontró un usuario administrador.');
             setTimeout(() => {
                 setLoading(false);
             }, 1000);
@@ -39,7 +39,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
             return Validate(fire_token, (error, user) => {
                 if (error) {
                     logging.error(error);
-                    setAuthStage('User not valid, logging out...');
+                    setAuthStage('Usuario no válido, cerrando sesión...');
                     userDispatch({
                         type: 'logout',
                         payload: initialUserState
@@ -48,7 +48,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                         setLoading(false);
                     }, 1000);
                 } else if (user) {
-                    setAuthStage('User authenticated.');
+                    setAuthStage('User identificado.');
                     userDispatch({
                         type: 'login',
                         payload: { user, fire_token }

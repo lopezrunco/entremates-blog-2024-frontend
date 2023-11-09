@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
-// Variables
+// Variables ---------------------------------------------------------------------
+
 const primaryColor = '#60740a';
-const secondaryColor = '#c7b300';
+const secondaryColor = '#dbc500';
 const primaryDark = '#394506';
 const blackColor = '#252525';
 const footerColor = '#1e1e1e';
@@ -10,6 +11,8 @@ const lightColor = '#ececec';
 const grayColor = '#ccc';
 const dangerColor = '#ce0000';
 const baseFont = 'Poppins';
+
+// Globals ---------------------------------------------------------------------
 
 const GlobalStyles = createGlobalStyle`
 html,
@@ -467,7 +470,6 @@ hr {
     left: 60%;
   }
 }
-/* Base */
 .bd-grid {
   max-width: 1024px;
   display: grid;
@@ -476,7 +478,7 @@ hr {
   margin-right: 1.5rem;
 }
 
-/* Header */
+// Header ---------------------------------------------------------------------
 header {
   width: 100%;
   height: 3rem;
@@ -498,7 +500,7 @@ header {
   cursor: pointer;
 }
 
-/* Nav */
+// Nav ---------------------------------------------------------------------
 @media screen and (max-width: 768px) {
   .nav {
     position: fixed;
@@ -549,7 +551,7 @@ header {
 }
 
 .nav-item {
-  margin: 2.5rem 0;
+  margin: 1rem 0;
 }
 
 .nav-link {
@@ -564,7 +566,6 @@ header {
   color: ${primaryColor};
 }
 
-/* Media queries */
 @media screen and (min-width: 769px) {
   .header {
     height: 4rem;
@@ -626,6 +627,28 @@ header {
     margin: 0 auto;
   }
 }
+
+// Go to top button ---------------------------------------------------------------------
+#goToTop {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: ${primaryColor};
+  font-size: 2.6rem;
+  transition: ease-in-out 0.25s;
+  opacity: 0.7;
+}
+#goToTop:hover {
+  color: #4d5d08;
+}
+
+// Home img ---------------------------------------------------------------------
 .home-img {
   width: 100%;
   height: 100vh;
@@ -709,6 +732,8 @@ header {
     background-image: url(https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/ohmrq1g6hvgoro07vmz5);
   }
 }
+
+// About ---------------------------------------------------------------------
 .about {
   text-align: center;
   background-position: center bottom;
@@ -770,6 +795,8 @@ header {
     opacity: 1;
   }
 }
+
+// News ---------------------------------------------------------------------
 .news {
   text-align: center;
 }
@@ -861,6 +888,8 @@ header {
     grid-column: 1/2;
   }
 }
+
+// Single blog ---------------------------------------------------------------------
 .article-single {
   text-align: left;
 }
@@ -967,6 +996,8 @@ header {
     grid-template-columns: 3fr 1fr;
   }
 }
+
+// Magazine ---------------------------------------------------------------------
 .magazine-release {
   text-align: center;
 }
@@ -1073,6 +1104,8 @@ header {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+// Ads ---------------------------------------------------------------------
 .ads .flex {
   flex-direction: column;
   justify-content: center;
@@ -1102,6 +1135,8 @@ header {
     width: 300px;
   }
 }
+
+// Bottom ---------------------------------------------------------------------
 .bottom {
   background-color: ${blackColor};
   color: ${lightColor};
@@ -1146,6 +1181,8 @@ header {
     gap: 10px;
   }
 }
+
+// Footer ---------------------------------------------------------------------
 footer {
   padding: 20px 0;
   background-color: ${footerColor};
@@ -1166,25 +1203,8 @@ footer .flex a {
     gap: 1rem;
   }
 }
-#goToTop {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: ${primaryColor};
-  font-size: 2.6rem;
-  transition: ease-in-out 0.25s;
-  opacity: 0.7;
-}
-#goToTop:hover {
-  color: #4d5d08;
-}
 
+// contact ---------------------------------------------------------------------
 .contact {
   background-position: center top;
   color: ${blackColor};
@@ -1287,6 +1307,17 @@ footer .flex a {
     margin: 0 auto;
     margin-bottom: 30px;
   }
+}
+
+// Bootstrap override -------------------------------------------------------
+.navbar-light .navbar-nav .nav-link:hover, 
+.navbar-light .navbar-nav .nav-link:focus {
+    background-color: ${grayColor} !important;
+    color: ${primaryColor} !important;
+}
+.navbar-light .navbar-toggler {
+  border: none !important;
+  outline: none !important;
 }
 `;
 
