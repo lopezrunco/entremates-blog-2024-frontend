@@ -152,6 +152,18 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
         }
     };
 
+    const stripInlineStyles = (htmlString: string) => {
+        const div = document.createElement('div');
+        div.innerHTML = htmlString;
+        
+        const elementsWithStyles = div.querySelectorAll('*[style]');
+        elementsWithStyles.forEach((el) => {
+            el.removeAttribute('style');
+        });
+        
+        return div.innerHTML;
+    };
+
     if (loading) return <LoadingComponent>Loading blog editor...</LoadingComponent>;
 
     return (
@@ -188,17 +200,19 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
                                 editorState={editorState}
                                 wrapperClassName="card"
                                 editorClassName="card-body"
-                                onEditorStateChange={(newState) => {
-                                    setEditorState(newState);
-                                    setContent(draftToHtml(convertToRaw(newState.getCurrentContent())));
-                                }}
                                 toolbar={{
                                     options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'history', 'embedded', 'emoji', 'image'],
-                                    inline: { inDropdown: true },
+                                    inline: false,
                                     list: { inDropdown: true },
                                     textAlign: { inDropdown: true },
                                     link: { inDropdown: true },
                                     history: { inDropdown: true }
+                                }}
+                                onEditorStateChange={(newState) => {
+                                    setEditorState(newState);
+                                    const contentState = convertToRaw(newState.getCurrentContent());
+                                    const contentHtml = draftToHtml(contentState);
+                                    setContent(stripInlineStyles(contentHtml));
                                 }}
                             />
                         </FormGroup>
@@ -223,7 +237,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
                         </FormGroup>
                         <FormGroup>
                             <Label className="mt-5">Previsualización:</Label>
-                            <div className="border p-2">
+                            <div className="border p-4">
                                 <div dangerouslySetInnerHTML={{ __html: content }} />
                             </div>
                         </FormGroup>

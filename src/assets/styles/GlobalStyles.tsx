@@ -320,6 +320,7 @@ h6 {
 
 p {
   line-height: 1.3rem;
+  margin-bottom: 1.3rem;
 }
 
 a {
