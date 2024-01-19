@@ -1,14 +1,7 @@
-# Instructions
+# Blog app
+## Entre mates y otras yerbas
 
-Create the client side React app
-```sh
-npx create-react-app client --template=typescript
-```
+Usefull docs:
 
-Install React Router Dom
-```sh
-npm install --save-dev @types/react-router-dom
-```
-
-Define the logging functions in client/config/logging.ts
-
+- [General instructions](./docs/general.md)
+- [Run Docker image in Kali Linux](./docs/docker.md)
