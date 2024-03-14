@@ -7,7 +7,7 @@ interface IAdProps {
     show: boolean;
 }
 
-const ads: IAdProps[] = [
+export const ads: IAdProps[] = [
     {
         altText: 'Mercado Natural',
         logo: 'https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/dr3ej5smttrbpjuix5dx',
