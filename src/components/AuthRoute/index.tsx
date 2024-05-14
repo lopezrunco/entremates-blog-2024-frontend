@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 
 import UserContext from '../../contexts/user';
-import logging from '../../config/logging';
+import logging from '../../utils/logging';
 
 export interface IAuthRouteProps {
     children?: any;

@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react';
 
 import UserContext from '../contexts/user';
 import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
-import logging from '../config/logging';
+import logging from '../utils/logging';
 
 import IPageProps from '../interfaces/page';
 import CenterPiece from '../components/CenterPiece';

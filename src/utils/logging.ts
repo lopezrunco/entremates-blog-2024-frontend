@@ -1,3 +1,5 @@
+// This file returns different functions to log timestamped messages in the console.
+
 const DEFAULT_NAMESPACE = 'Client';
 
 const info = (message: any, namespace?: string) => {
