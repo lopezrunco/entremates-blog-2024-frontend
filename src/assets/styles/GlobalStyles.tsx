@@ -1280,7 +1280,7 @@ footer .flex a {
 }
 @media screen and (min-width: 1024px) {
   .contact .flex .contact-info .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
   .contact > .content-wrap > .flex {

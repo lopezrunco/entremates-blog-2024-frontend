@@ -1,10 +1,12 @@
 import firebase from 'firebase';
 import axios from 'axios';
+
 import { auth } from '../config/firebase';
-import logging from '../config/logging';
+import logging from '../utils/logging';
 import config from '../config/config';
 import IUser from '../interfaces/user';
 
+// Authenticates the user using a firebase auth provider (Google, Facebook, etc).
 export const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) =>
     new Promise<firebase.auth.UserCredential>((resolve, reject) => {
         auth.signInWithPopup(provider)
@@ -12,7 +14,8 @@ export const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) =>
             .catch((error) => reject(error));
     });
 
-export const Authenticate = async (uid: string, name: string, fire_token: string, callback: (error: string | null, user: IUser | null) => void) => {
+// Authenticates the user in the backend after the Firebase authentication.
+export const Authenticate = async (uid: string, name: string, fire_token: string, callback: (error: string | null, user: IUser | null) => void) => { // "void" means that the function does not return any value
     try {
         const response = await axios({
             method: 'POST',
@@ -36,6 +39,7 @@ export const Authenticate = async (uid: string, name: string, fire_token: string
     }
 };
 
+// Validates the Firebase token in the backend to make sure the user still authenticated.
 export const Validate = async (fire_token: string, callback: (error: string | null, user: IUser | null) => void) => {
     try {
         const response = await axios({

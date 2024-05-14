@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import UserContext from '../contexts/user';
 import config from '../config/config';
-import logging from '../config/logging';
+import logging from '../utils/logging';
 import IPageProps from '../interfaces/page';
 import IBlog from '../interfaces/blog';
 
