@@ -15,12 +15,6 @@ const ads: IAdProps[] = [
         show: true
     },
     {
-        altText: 'Vitanna',
-        logo: 'https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/gnogqj4avmucxvvadz8m',
-        link: 'https://vitanna.com.uy/',
-        show: true
-    },
-    {
         altText: 'Super Tico',
         logo: 'https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/d2cat9buicqsof1w2g50',
         link: 'https://tico.com.uy/',

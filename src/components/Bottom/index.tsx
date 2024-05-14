@@ -19,19 +19,13 @@ export const contactData: IContactItemProps[] = [
         title: '2900 7643',
         link: 'tel:+59829007643',
         icon: <FaPhoneAlt className="icon" />,
-        colsize: '2'
-    },
-    {
-        title: '095 134 303',
-        link: 'https://wa.me/59895134303',
-        icon: <FaWhatsapp className="icon" />,
-        colsize: '2'
+        colsize: '3'
     },
     {
         title: 'Entrematesyotrasyerbas',
         link: 'https://es-la.facebook.com/Entrematesyotrasyerbas/',
         icon: <FaFacebookSquare className="icon" />,
-        colsize: '3'
+        colsize: '4'
     }
 ];
 
