@@ -24,11 +24,11 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
         }, 1000);
     }, []);
 
-    // Check local storage for a token. If exists, verify with the backend. If not, we're logged out initially.
     const CheckLocalStorageForCredentials = () => {
         setAuthStage('Chequeando credenciales...');
-        const fire_token = localStorage.getItem('fire_token');
+        const fire_token = localStorage.getItem('fire_token'); // Check local storage for a token.
 
+        // If there is no token, we are logged out initially.
         if (fire_token === null) {
             userDispatch({ type: 'logout', payload: initialUserState });
             setAuthStage('No se encontró un usuario administrador.');
@@ -36,6 +36,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 setLoading(false);
             }, 1000);
         } else {
+            // If the token exsits, verify it in the backend.
             return Validate(fire_token, (error, user) => {
                 if (error) {
                     logging.error(error);
@@ -61,19 +62,19 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
         }
     };
 
+    // This object will provide values to the userContext: the actual user state & the function to modify it.
     const userContextValues = {
         userState,
         userDispatch
     };
 
-    if (loading) {
-        return <LoadingComponent>{authStage}</LoadingComponent>;
-    }
+    loading && <LoadingComponent>{authStage}</LoadingComponent>;
 
     return (
         <UserContextProvider value={userContextValues}>
             <GlobalStyles />
             <Routes>
+                {/* Generate the routes dynamically. */}
                 {routes.map((route, index) => (
                     <Route
                         key={index}
