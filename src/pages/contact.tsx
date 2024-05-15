@@ -1,15 +1,17 @@
 import { Container } from 'reactstrap';
 import React from 'react';
 
+import { contactData } from '../data/contact';
+
 import IPageProps from '../interfaces/page';
-import { contactData } from '../components/Bottom';
+import Bottom, { IContactItemProps } from '../components/Bottom';
 
 import Navigation from '../components/Navigation';
 import Header from '../components/Header';
-import Bottom from '../components/Bottom';
+import JoinShow from '../components/JoinShow';
 import Footer from '../components/Footer';
 
-const ContactPage: React.FunctionComponent<IPageProps> = () => {
+const ContactPage: React.FC<IPageProps> = () => {
     return (
         <Container fluid className="p-0">
             <Navigation />
@@ -24,7 +26,7 @@ const ContactPage: React.FunctionComponent<IPageProps> = () => {
                     <div className="flex">
                         <div className="contact-info">
                             <div className="grid">
-                                {contactData.map((el, i) => {
+                                {contactData.map((el: IContactItemProps, i: number) => {
                                     return (
                                         <a key={i} className="box" href={el.link} target="_blank" rel="noreferrer">
                                             <div>
@@ -36,19 +38,7 @@ const ContactPage: React.FunctionComponent<IPageProps> = () => {
                                 })}
                             </div>
                         </div>
-                        <div className="join-program">
-                            <div className="flex">
-                                <div className="join-img"></div>
-                                <div>
-                                    <h3>Participe de nuestro programa</h3>
-                                    <hr />
-                                    <p>De lunes a viernes de 00 a 03 am en Radio Carve</p>
-                                    <p className="bold-700">
-                                        Conducción: <span className="primary-color">Miguel Cabrera</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <JoinShow />
                     </div>
                 </Container>
             </section>
