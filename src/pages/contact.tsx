@@ -4,11 +4,11 @@ import React from 'react';
 import { contactData } from '../data/contact';
 
 import IPageProps from '../interfaces/page';
-import Bottom, { IContactItemProps } from '../components/Bottom';
 
 import Navigation from '../components/Navigation';
 import Header from '../components/Header';
 import JoinShow from '../components/JoinShow';
+import Bottom, { IContactItemProps } from '../components/Bottom';
 import Footer from '../components/Footer';
 
 const ContactPage: React.FC<IPageProps> = () => {
