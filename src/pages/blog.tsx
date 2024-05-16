@@ -1,21 +1,23 @@
 import axios from 'axios';
-import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { Button, Container, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 
 import config from '../config/config';
 import UserContext from '../contexts/user';
+
 import IPageProps from '../interfaces/page';
 import IBlog from '../interfaces/blog';
 import IUser from '../interfaces/user';
 
-import LoadingComponent, { Loading } from '../components/Loader';
+import LoadingComponent from '../components/Loader';
+import { Loading } from '../components/Loader/Loading';
 import Navigation from '../components/Navigation';
 import ErrorText from '../components/ErrorText';
 import Header from '../components/Header';
 import Bottom from '../components/Bottom';
 import Footer from '../components/Footer';
-import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const BlogPage: React.FunctionComponent<IPageProps> = () => {
     const [_id, setId] = useState<string>('');

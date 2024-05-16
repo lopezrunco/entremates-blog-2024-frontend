@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -22,11 +20,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Firebase
+# firebase
 .firebaserc
 firebase.json
 .firebase
 
+<<<<<<< HEAD
 # Config files
 /src/config/config.ts
 
@@ -34,3 +33,11 @@ firebase.json
 /.firebase
 .firebaserc
 firebase.json
+=======
+# config files
+/src/config/config.ts
+/src/data
+
+# assets
+/src/assets/images
+>>>>>>> dev

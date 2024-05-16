@@ -1,7 +1,6 @@
 # Blog app
 ## Entre mates y otras yerbas
 
-
 This repository hosts the front end of a blog application dedicated to a radio show broadcasted in Uruguay. It serves as an online platform where the radio show can engage with its audience, share updates, and provide additional content related to their broadcasts. The front end is built using React.js, offering a modern and interactive user experience.
 
 ## Roadmap
@@ -10,7 +9,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 
 #### Quality, Testing & Deployment
 - [ ] Clean code (handle errors, forms, performance, etc.)
-- [ ] Implement Tailwind CSS & clear redundant CSS
+- [ ] Clean & organize CSS
 - [ ] Ensure device responsiveness
 - [ ] Use All Axios or All fetch
 - [ ] Follow API integration best practices
@@ -24,6 +23,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 #### [ ] Ready to publish (Jun 2024)
 
 ## Future Functionalities
+- [ ] Modularize StyledComponents or migrate to Tailwind CSS
 - [ ] CRUD ads & magazine posts
 - [ ] Analytics (Admin users)
 - [ ] Registered users can like, comment, and share blog articles

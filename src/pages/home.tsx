@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import config from '../config/config';
 import logging from '../utils/logging';
+
 import IPageProps from '../interfaces/page';
 import IBlog from '../interfaces/blog';
 import IUser from '../interfaces/user';
@@ -63,7 +64,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
             <NewMagazine />
             <section className="news light-img-bg">
                 <Container>
-                    <SectionTitle title="Novedades" />
+                    <SectionTitle title="Novedades" useSeparator={true} />
                     <div className='grid-1 grid'>
                         {blogs.length === 0 && (
                             <p>

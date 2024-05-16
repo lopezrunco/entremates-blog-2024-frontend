@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-export interface ICenterPieceProps {
-    children?: any
+export interface ICenterElementsProps {
+    children?: React.ReactNode;
 }
 
-const CenterPiece: React.FunctionComponent<ICenterPieceProps> = (props) => {
+const CenterElements: React.FC<ICenterElementsProps> = (props) => {
     const { children } = props;
 
     return (
@@ -26,4 +26,4 @@ const CenterPiece: React.FunctionComponent<ICenterPieceProps> = (props) => {
     );
 };
 
-export default CenterPiece;
+export default CenterElements;

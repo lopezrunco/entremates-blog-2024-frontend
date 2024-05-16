@@ -1,6 +1,8 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import React from 'react';
+
+import BackgroundImage from '../BackgroundImage';
+import placeholderImageSrc from '../../assets/images/placeholder.webp';
 
 export interface IBlogPreviewProps {
     _id: string;
@@ -10,18 +12,17 @@ export interface IBlogPreviewProps {
     author: string;
     createdAt: string;
     updatedAt: string;
-    children?: any;
+    children?: React.ReactNode;
 }
 
-const BlogPreview: React.FunctionComponent<IBlogPreviewProps> = (props) => {
+const BlogPreview: React.FC<IBlogPreviewProps> = (props) => {
     const { _id, children, title, picture, author, createdAt, updatedAt } = props;
 
-    const BGImageStyledItem = styled.div`
-        background-image: url(${picture});
-    `;
+    // Fallback img if picture is missing or invalid.
+    const imageUrl = picture || placeholderImageSrc;
 
     return (
-        <BGImageStyledItem className="item">
+        <BackgroundImage imageUrl={imageUrl} className="item">
             <Link to={`/blogs/${_id}`} style={{ textDecoration: 'none' }}>
                 <div className="overlay-top">
                     <span className="category">Novedades</span>
@@ -32,7 +33,7 @@ const BlogPreview: React.FunctionComponent<IBlogPreviewProps> = (props) => {
                     </span>
                 </div>
             </Link>
-        </BGImageStyledItem>
+        </BackgroundImage>
     );
 };
 

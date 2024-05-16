@@ -1,16 +1,17 @@
+import firebase from 'firebase';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
-import firebase from 'firebase';
 import React, { useContext, useState } from 'react';
 
+import { Providers } from '../config/firebase';
+import logging from '../utils/logging';
 import UserContext from '../contexts/user';
 import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
-import logging from '../utils/logging';
 
 import IPageProps from '../interfaces/page';
-import CenterPiece from '../components/CenterPiece';
+
+import CenterElements from '../components/CenterElements';
 import ErrorText from '../components/ErrorText';
-import { Providers } from '../config/firebase';
 import LoadingComponent from '../components/Loader';
 
 const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
@@ -71,7 +72,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
     };
 
     return (
-        <CenterPiece>
+        <CenterElements>
             <Card>
                 <CardHeader>{isLogin ? 'Iniciar sesión' : 'Registro'}</CardHeader>
                 <CardBody>
@@ -82,7 +83,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                     {authenticating && <LoadingComponent card={false} />}
                 </CardBody>
             </Card>
-        </CenterPiece>
+        </CenterElements>
     );
 };
 

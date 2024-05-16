@@ -1,52 +1,30 @@
 import React from 'react';
 
-import CenterPiece from '../CenterPiece';
+import CenterElements from '../CenterElements';
+import { Loading } from './Loading';
 
-export interface ILoadingProps {
-    dotType?: string;
-    children?: any
-}
-
-export const Loading: React.FunctionComponent<ILoadingProps> = (props) => {
-    const { children, dotType } = props;
-
-    return (
-        <div className="text-center">
-            <div className="stage">
-                <div className={dotType} />
-            </div>
-            {children}
-        </div>
-    );
-};
-
-Loading.defaultProps = {
-    dotType: 'dot-bricks'
-};
-
-export interface ILoadingComponentProps {
+export interface ILoaderProps {
     card?: boolean;
     dotType?: string;
-    children?: any
+    children?: React.ReactNode;
 }
 
-export const LoadingComponent: React.FunctionComponent<ILoadingComponentProps> = (props) => {
+export const Loader: React.FC<ILoaderProps> = (props) => {
     const { card, children, dotType } = props;
 
     if (card) {
         return (
-            <CenterPiece>
+            <CenterElements>
                 <Loading dotType={dotType}>{children}</Loading>
-            </CenterPiece>
+            </CenterElements>
         );
     }
-
     return <Loading dotType={dotType}>{children}</Loading>;
 };
 
-LoadingComponent.defaultProps = {
+Loader.defaultProps = {
     card: true,
     dotType: 'dot-bricks'
 };
 
-export default LoadingComponent;
+export default Loader;
