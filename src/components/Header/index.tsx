@@ -6,6 +6,8 @@ import { HeaderContent } from './HeaderContent';
 import { Title } from './Title';
 import { Headline } from './Headline';
 
+import placeholderImageSrc from '../../assets/images/mate-placeholder-image.jpg';
+
 export interface IHeaderProps {
     height?: string;
     image?: string;
@@ -34,11 +36,11 @@ const Header: React.FC<IHeaderProps> = (props) => {
     );
 };
 
-// If a parent component uses the Header component without specifying 
+// If a parent component uses the Header component without specifying
 // height and image values, the default ones will be used instead.
 Header.defaultProps = {
     height: '100%',
-    image: 'https://entrematesyotrasyerbas.com.uy/img/mate-bg-desktop.jpg'
+    image: placeholderImageSrc
 };
 
 export default Header;
