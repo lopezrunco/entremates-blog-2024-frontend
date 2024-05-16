@@ -9,7 +9,8 @@ import IPageProps from '../interfaces/page';
 import IBlog from '../interfaces/blog';
 import IUser from '../interfaces/user';
 
-import LoadingComponent, { Loading } from '../components/Loader';
+import LoadingComponent from '../components/Loader';
+import { Loading } from '../components/Loader/Loading';
 import Navigation from '../components/Navigation';
 import ErrorText from '../components/ErrorText';
 import Header from '../components/Header';
