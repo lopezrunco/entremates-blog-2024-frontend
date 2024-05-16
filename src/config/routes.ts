@@ -42,34 +42,34 @@ const blogRoutes: IRoute[] = [
     }
 ];
 
-const mainRoutes: IRoute[] = [
+export const mainRoutes: IRoute[] = [
     {
         path: '/',
         exact: true,
         auth: false,
         component: HomePage,
-        name: 'Home'
+        name: 'Inicio'
     },
     {
         path: '/revista',
         exact: true,
         auth: false,
         component: MagazinePage,
-        name: 'Magazine'
+        name: 'Revista'
     },
     {
         path: '/novedades',
         exact: true,
         auth: false,
         component: BlogListPage,
-        name: 'BlogList'
+        name: 'Novedades'
     },
     {
         path: '/contacto',
         exact: true,
         auth: false,
         component: ContactPage,
-        name: 'Contact'
+        name: 'Contacto'
     }
 ];
 
