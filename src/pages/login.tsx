@@ -8,7 +8,7 @@ import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modu
 import logging from '../utils/logging';
 
 import IPageProps from '../interfaces/page';
-import CenterPiece from '../components/CenterPiece';
+import CenterElements from '../components/CenterElements';
 import ErrorText from '../components/ErrorText';
 import { Providers } from '../config/firebase';
 import LoadingComponent from '../components/Loader';
@@ -71,7 +71,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
     };
 
     return (
-        <CenterPiece>
+        <CenterElements>
             <Card>
                 <CardHeader>{isLogin ? 'Iniciar sesión' : 'Registro'}</CardHeader>
                 <CardBody>
@@ -82,7 +82,7 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                     {authenticating && <LoadingComponent card={false} />}
                 </CardBody>
             </Card>
-        </CenterPiece>
+        </CenterElements>
     );
 };
 

@@ -1,15 +1,24 @@
 import { Container } from 'reactstrap';
+import React from 'react';
 
-function Footer() {
+const Footer: React.FC = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer>
             <Container>
                 <div className="flex">
-                    <small>© {new Date().getFullYear()} Entre mates y otras yerbas</small>
+                    <small>© {currentYear} Entre mates y otras yerbas</small>
+                    <small>
+                        Desarrollo:{' '}
+                        <a href="https://github.com/lopezrunco" target="_blank" rel="noreferrer">
+                            LopezRunco
+                        </a>
+                    </small>
                 </div>
             </Container>
         </footer>
     );
-}
+};
 
 export default Footer;

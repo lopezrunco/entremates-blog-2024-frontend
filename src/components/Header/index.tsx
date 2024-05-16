@@ -37,7 +37,7 @@ const Headline = styled.p`
     max-width: 800px;
 `;
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const Header: React.FC<IHeaderProps> = (props) => {
     const { children, height, image, headline, title } = props;
 
     return (

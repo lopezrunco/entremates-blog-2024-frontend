@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CenterPiece from '../CenterPiece';
+import CenterElements from '../CenterElements';
 
 export interface ILoadingProps {
     dotType?: string;
@@ -35,9 +35,9 @@ export const LoadingComponent: React.FunctionComponent<ILoadingComponentProps> =
 
     if (card) {
         return (
-            <CenterPiece>
+            <CenterElements>
                 <Loading dotType={dotType}>{children}</Loading>
-            </CenterPiece>
+            </CenterElements>
         );
     }
 
