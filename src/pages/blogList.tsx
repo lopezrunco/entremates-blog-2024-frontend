@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -18,18 +18,20 @@ import Bottom from '../components/Bottom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-const BlogListPage: React.FunctionComponent<IPageProps> = (props) => {
+import headerImageSrc from '../assets/images/countryside-herbs.jpg'
+
+const BlogListPage: React.FC<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
 
     useEffect(() => {
-        GetAllBlogs();
+        getAllBlogs();
     }, []);
 
-    const GetAllBlogs = async () => {
+    const getAllBlogs = async (): Promise<void> => {
         try {
-            const response = await axios({
+            const response: AxiosResponse<{ blogs: IBlog[] }> = await axios({
                 method: 'GET',
                 url: `${config.server.url}/blogs`
             });
@@ -37,6 +39,8 @@ const BlogListPage: React.FunctionComponent<IPageProps> = (props) => {
                 let blogs = response.data.blogs as IBlog[];
                 blogs.sort((x, y) => y.updatedAt.localeCompare(x.updatedAt));
                 setBlogs(blogs);
+            } else {
+                throw new Error('Failed to fetch the blogs.')
             }
         } catch (error) {
             logging.error(error);
@@ -56,7 +60,7 @@ const BlogListPage: React.FunctionComponent<IPageProps> = (props) => {
         <Container fluid className="p-0">
             <Navigation />
             <Header
-                image="https://res.cloudinary.com/dcqvlh8mo/image/upload/f_auto,q_auto/si1ty8bnzm96rnmj2eg0"
+                image={headerImageSrc}
                 headline="Compartimos artículos acerca del uso, dosis, fórmulas y virtudes curativas de las hierbas medicinales."
                 title="Novedades"
                 height="300px"

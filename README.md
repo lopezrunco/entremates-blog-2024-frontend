@@ -36,6 +36,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 - [ ] Use All Axios or All fetch
 - [ ] Follow API integration best practices
 - [ ] Implement TypeScript best practices
+- [ ] SEO and accesibility
 - [ ] Implement SOLID principles
 - [ ] Unit & Integration testing
 - [X] Dockerize
@@ -46,6 +47,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 
 ## Future Functionalities:
 - [ ] Modularize StyledComponents or migrate to Tailwind CSS
+- [ ] Implement Redux
 - [ ] CRUD ads & magazine posts
 - [ ] Analytics (Admin users)
 - [ ] Registered users can like, comment, and share blog articles

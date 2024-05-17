@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Button, Container, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ import Header from '../components/Header';
 import Bottom from '../components/Bottom';
 import Footer from '../components/Footer';
 
-const BlogPage: React.FunctionComponent<IPageProps> = () => {
+const BlogPage: React.FC<IPageProps> = () => {
     const [_id, setId] = useState<string>('');
     const [blog, setBlog] = useState<IBlog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -46,9 +46,9 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
         // eslint-disable-next-line
     }, [_id]);
 
-    const getBlog = async () => {
+    const getBlog = async (): Promise<void> => {
         try {
-            const response = await axios({
+            const response: AxiosResponse<{ blog: IBlog }> = await axios({
                 method: 'GET',
                 url: `${config.server.url}/blogs/read/${_id}`
             });
@@ -65,11 +65,11 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
         }
     };
 
-    const deleteBlog = async () => {
+    const deleteBlog = async (): Promise<void> => {
         setDeleting(true);
 
         try {
-            const response = await axios({
+            const response: AxiosResponse<void> = await axios({
                 method: 'DELETE',
                 url: `${config.server.url}/blogs/${_id}`
             });
@@ -124,7 +124,7 @@ const BlogPage: React.FunctionComponent<IPageProps> = () => {
                             </Container>
                         )}
                         <ErrorText error={error} />
-                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                        <div dangerouslySetInnerHTML={{ __html: blog.content || '' }} />
                     </Container>
                 </section>
                 <Bottom />

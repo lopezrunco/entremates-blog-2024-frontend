@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
@@ -50,12 +50,14 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
 
     const getBlog = async (id: string) => {
         try {
-            const response = await axios({
+            const response: AxiosResponse = await axios({
                 method: 'GET',
                 url: `${config.server.url}/blogs/read/${id}`
             });
 
+            // If the response is satisfactory.
             if (response.status === 200 || response.status === 304) {
+                // If the blog author is not the one logged in.
                 if (user._id !== response.data.blog.author._id) {
                     logging.warn('El propietario de este artículo es otro usuario.');
                     setId('');
@@ -84,18 +86,19 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
         }
     };
 
-    const createBlog = async () => {
+    const createBlog = async (): Promise<void> => {
+        // Check if the required fields are empty.
         if (title === '' || headline === '' || content === '') {
             setError('Por favor, llene todos los campos requeridos.');
             setSuccess('');
-            return null;
+            return;
         }
         setError('');
         setSuccess('');
         setSaving(true);
 
         try {
-            const response = await axios({
+            const response: AxiosResponse = await axios({
                 method: 'POST',
                 url: `${config.server.url}/blogs/create`,
                 data: {
@@ -108,9 +111,9 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
             });
             if (response.status === 201) {
                 setId(response.data.blog._id);
-                setSuccess('Artículo creado. Puede continuar editándolo en esta misma página.');
+                setSuccess('Artículo creado.');
             } else {
-                setError('Error al guardar el artículo.');
+                setError('Error al crear el artículo.');
             }
         } catch (error: any) {
             setError(error.message);
@@ -119,18 +122,19 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
         }
     };
 
-    const editBlog = async () => {
+    const editBlog = async (): Promise<void> => {
+        // Check if the required fields are empty.
         if (title === '' || headline === '' || content === '') {
             setError('Por favor, llene todos los campos requeridos.');
             setSuccess('');
-            return null;
+            return;
         }
         setError('');
         setSuccess('');
         setSaving(true);
 
         try {
-            const response = await axios({
+            const response: AxiosResponse = await axios({
                 method: 'PATCH',
                 url: `${config.server.url}/blogs/update/${_id}`,
                 data: {
@@ -154,15 +158,21 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
     };
 
     const stripInlineStyles = (htmlString: string) => {
-        const div = document.createElement('div');
-        div.innerHTML = htmlString;
-        
-        const elementsWithStyles = div.querySelectorAll('*[style]');
-        elementsWithStyles.forEach((el) => {
-            el.removeAttribute('style');
-        });
-        
-        return div.innerHTML;
+        try {
+            const tempElement = document.createElement('div');
+            tempElement.innerHTML = htmlString;
+            const elementsWithStyles = tempElement.querySelectorAll('*[style]');
+
+            elementsWithStyles.forEach((element) => {
+                element.removeAttribute('style');
+            });
+            // Return the innerHTML of the temporary element without styles.
+            return tempElement.innerHTML;
+        } catch (error) {
+            console.error('Error stripping inline styles: ', error);
+            // Return the original HTML in case of an error.
+            return htmlString;
+        }
     };
 
     if (loading) return <LoadingComponent>Loading blog editor...</LoadingComponent>;
@@ -171,7 +181,7 @@ const EditPage: React.FunctionComponent<IPageProps> = () => {
         <Container fluid className="p-0">
             <Navigation />
             <Header headline="" title={_id !== '' ? 'Editar artículo' : 'Crear artículo'} />
-            <section className='light-img-bg'>
+            <section className="light-img-bg">
                 <Container>
                     <ErrorText error={error} />
                     <Form>
