@@ -1,14 +1,9 @@
 import { Col, Container, Row } from 'reactstrap';
 import React from 'react';
 
-import { contactData } from '../../data/contact';
+import { IContactItemProps } from '../../interfaces/contactItem';
 
-export interface IContactItemProps {
-    title: string;
-    link: string;
-    icon: JSX.Element;
-    colsize: string;
-}
+import { contactData } from '../../data/contact';
 
 const Bottom: React.FC = () => {
     return (

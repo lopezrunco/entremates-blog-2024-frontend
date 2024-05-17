@@ -8,7 +8,7 @@ const JoinShow: React.FC = () => {
                 <div>
                     <h3>Participe de nuestro programa</h3>
                     <hr />
-                    <p>De lunes a viernes de 00 a 03 am en Radio Carve</p>
+                    <p>De lunes a viernes de 00 a 03 am en Radio Carve.</p>
                     <p className="bold-700">
                         Conducción: <span className="primary-color">Miguel Cabrera</span>
                     </p>

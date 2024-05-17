@@ -36,6 +36,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 - [ ] Use All Axios or All fetch
 - [ ] Follow API integration best practices
 - [ ] Implement TypeScript best practices
+- [ ] SEO and accesibility
 - [ ] Implement SOLID principles
 - [ ] Unit & Integration testing
 - [X] Dockerize
