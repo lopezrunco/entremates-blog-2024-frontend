@@ -30,23 +30,22 @@ This repository hosts the front end of a blog application dedicated to a radio s
 - [X] Register and login users with Firebase Auth
 
 #### Quality, Testing & Deployment
-- [ ] Clean code (handle errors, forms, performance, etc.)
 - [ ] Clean & organize CSS
 - [ ] Ensure device responsiveness
-- [ ] Use All Axios or All fetch
-- [ ] Follow API integration best practices
-- [ ] Implement TypeScript best practices
+- [X] Use All Axios or All fetch
+- [X] Implement TypeScript best practices
 - [ ] SEO and accesibility
 - [ ] Implement SOLID principles
 - [ ] Unit & Integration testing
 - [X] Dockerize
 - [X] Upload to Vercel / Firebase / AWS
-- [ ] Write docs
 
 #### [ ] Ready to publish (Jun 2024)
 
 ## Future Functionalities:
 - [ ] Modularize StyledComponents or migrate to Tailwind CSS
+- [ ] Follow API integration best practices
+- [ ] Improve errors handling.
 - [ ] Implement Redux
 - [ ] CRUD ads & magazine posts
 - [ ] Analytics (Admin users)
@@ -54,6 +53,7 @@ This repository hosts the front end of a blog application dedicated to a radio s
 - [ ] Search by tags, categories, title and keywords
 - [ ] Notifications
 - [ ] Implement CI/CD pipelines
+- [ ] Write docs
 
 ## Usefull docs:
 
