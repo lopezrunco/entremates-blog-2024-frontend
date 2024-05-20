@@ -1,15 +1,16 @@
+import { ThemeProvider } from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 import React, { useReducer, useState, useEffect } from 'react';
 
-import routes from './config/routes';
 import logging from './utils/logging';
+import routes from './config/routes';
 import { UserContextProvider, initialUserState, userReducer } from './contexts/user';
 import { Validate } from './modules/auth';
 
 import LoadingComponent from './components/Loader';
 import AuthRoute from './components/AuthRoute';
 
-import GlobalStyles from './assets/styles/GlobalStyles';
+import GlobalStyles, { emyoyTheme } from './assets/styles/GlobalStyles';
 
 export interface IApplicationProps {}
 
@@ -72,25 +73,27 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
     return (
         <UserContextProvider value={userContextValues}>
-            <GlobalStyles />
-            <Routes>
-                {/* Generate the routes dynamically. */}
-                {routes.map((route, index) => (
-                    <Route
-                        key={index}
-                        path={route.path}
-                        element={
-                            route.auth ? (
-                                <AuthRoute>
+            <ThemeProvider theme={emyoyTheme}>
+                <GlobalStyles />
+                <Routes>
+                    {/* Generate the routes dynamically. */}
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                route.auth ? (
+                                    <AuthRoute>
+                                        <route.component />
+                                    </AuthRoute>
+                                ) : (
                                     <route.component />
-                                </AuthRoute>
-                            ) : (
-                                <route.component />
-                            )
-                        }
-                    />
-                ))}
-            </Routes>
+                                )
+                            }
+                        />
+                    ))}
+                </Routes>
+            </ThemeProvider>
         </UserContextProvider>
     );
 };

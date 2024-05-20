@@ -3,6 +3,8 @@ import React from 'react';
 
 import { ads } from '../../data/ads';
 
+import { AdImage, AdLink, FlexContainer } from './Ads.styles';
+
 export interface IAdData {
     altText: string;
     logo: string;
@@ -14,18 +16,18 @@ const Ads: React.FC = () => {
     return (
         <section className="ads light-img-bg">
             <Container>
-                <div className="flex">
+                <FlexContainer>
                     {ads.map((ad: IAdData, index: number) => {
                         if (ad.show) {
                             return (
-                                <a key={index} href={ad.link} target="_blank" rel="noreferrer">
-                                    <img src={ad.logo} alt={ad.altText} />
-                                </a>
+                                <AdLink key={index} href={ad.link} target="_blank" rel="noreferrer">
+                                    <AdImage src={ad.logo} alt={ad.altText} />
+                                </AdLink>
                             );
                         }
                         return null;
                     })}
-                </div>
+                </FlexContainer>
             </Container>
         </section>
     );

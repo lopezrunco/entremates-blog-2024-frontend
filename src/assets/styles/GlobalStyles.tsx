@@ -1,5 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const emyoyTheme = {
+    primaryColor: '#60740a',
+    secondaryColor: '#dbc500',
+    primaryDark: '#394506',
+    primaryDarkFaded: '#354104a1',
+    blackColor: '#252525',
+    footerColor: '#1e1e1e',
+    lightColor: '#ececec',
+    grayColor: '#ccc',
+    dangerColor: '#ce0000',
+    baseFont: 'Poppins'
+};
+
 // Variables ---------------------------------------------------------------------
 
 const primaryColor = '#60740a';
@@ -1114,37 +1127,6 @@ header {
 @media screen and (min-width: 1200px) {
   .magazine-grid .grid {
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-// Ads ---------------------------------------------------------------------
-.ads .flex {
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-.ads .flex a {
-  width: 100%;
-}
-.ads .flex a img {
-  width: 100%;
-  border: 1px solid ${grayColor};
-}
-
-@media screen and (min-width: 768px) {
-  .ads .flex {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .ads .flex a {
-    width: 250px;
-    height: auto;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .ads .flex a {
-    width: 300px;
   }
 }
 
