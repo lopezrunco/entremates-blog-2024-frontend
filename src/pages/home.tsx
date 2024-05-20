@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ import Ads from '../components/Ads';
 import Bottom from '../components/Bottom';
 import Footer from '../components/Footer';
 
-const HomePage: React.FunctionComponent<IPageProps> = (props) => {
+const HomePage: React.FC<IPageProps> = (props) => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
@@ -33,14 +33,17 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
 
     const GetAllBlogs = async () => {
         try {
-            const response = await axios({
+            const response: AxiosResponse = await axios({
                 method: 'GET',
                 url: `${config.server.url}/blogs`
             });
             if (response.status === 200 || response.status === 304) {
                 let blogs = response.data.blogs as IBlog[];
+                // Redorders the elements randomly every time
                 blogs.sort((a, b) => 0.5 - Math.random());
                 setBlogs(blogs);
+            } else {
+                throw new Error(`Unexpected response status: ${response.status}`);
             }
         } catch (error) {
             logging.error(error);
@@ -52,9 +55,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
         }
     };
 
-    if (loading) {
-        return <LoadingComponent>Cargando artículos...</LoadingComponent>;
-    }
+    if (loading) return <LoadingComponent>Cargando artículos...</LoadingComponent>;
 
     return (
         <Container fluid className="p-0">
@@ -65,7 +66,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
             <section className="news light-img-bg">
                 <Container>
                     <SectionTitle title="Novedades" useSeparator={true} />
-                    <div className='grid-1 grid'>
+                    <div className="grid-1 grid">
                         {blogs.length === 0 && (
                             <p>
                                 Aún no hay artículos en el blog.
@@ -88,7 +89,7 @@ const HomePage: React.FunctionComponent<IPageProps> = (props) => {
                                 </div>
                             );
                         })}
-                        <ErrorText error={error} />
+                        {error && <ErrorText error={error} />}
                     </div>
                 </Container>
             </section>

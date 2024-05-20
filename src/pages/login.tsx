@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
 import React, { useContext, useState } from 'react';
 
-import { Providers } from '../config/firebase';
 import logging from '../utils/logging';
+import { Providers } from '../config/firebase';
 import UserContext from '../contexts/user';
 import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
 
@@ -14,22 +14,24 @@ import CenterElements from '../components/CenterElements';
 import ErrorText from '../components/ErrorText';
 import LoadingComponent from '../components/Loader';
 
-const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
+const LoginPage: React.FC<IPageProps> = (props) => {
     const [authenticating, setAuthenticating] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
     const userContext = useContext(UserContext);
     const navigate = useNavigate();
+
+    // Based in the URL, determines if the current page is a login page.
     const isLogin = window.location.pathname.includes('login');
 
-    const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) => {
-        if (error !== '') setError('');
+    const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) => { // Receives a social media authentication provider.
+        if (error !== '') setError(''); // Clears any previous error message.
         setAuthenticating(true);
 
-        SocialMediaPopup(provider)
+        SocialMediaPopup(provider) // This function opens a popup or redirects the user to the social media authentication page.
             .then(async (result) => {
                 logging.info(result);
-                let user = result.user;
+                let user = result.user; // Extracts the user object from the authentication result.
 
                 if (user) {
                     let uid = user.uid;
@@ -37,12 +39,13 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
 
                     if (name) {
                         try {
-                            let fire_token = await user.getIdToken();
+                            let fire_token = await user.getIdToken(); // Retrieves a Firebase token.
                             Authenticate(uid, name, fire_token, (error, _user) => {
                                 if (error) {
                                     setError(error);
                                     setAuthenticating(false);
                                 } else if (_user) {
+                                    // Dispatchs a login action updating the user's authentication status in the app.
                                     userContext.userDispatch({
                                         type: 'login',
                                         payload: { user: _user, fire_token }
